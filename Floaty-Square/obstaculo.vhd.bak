@@ -1,0 +1,43 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity obstaculo is
+port(clk: in std_logic;
+	  linha, coluna: in std_logic_vector(9 downto 0);
+	  r, g, b: out std_logic_vector(3 downto 0));
+end obstaculo;
+
+architecture desenho of obstaculo is
+begin
+
+	process(linha, coluna, clk)
+	variable positionColuna:  integer;
+	variable positionLinha: integer := 200;
+	begin
+		if rising_edge(clk) then
+			if positionColuna < -40 then
+				positionColuna <= 640;
+				--positionLinha <= número aleatório?
+			else
+				posiitonColuna <= positionColuna - 1;
+				
+			end if;	
+			
+			if to_integer(unsigned(coluna)) > positionColuna and to_integer(unsigned(positionColuna)) < positionColuna + 40 then
+				if to_integer(unsigned(linha)) > positionLinha and to_integer(unsigned(linha)) < positionLinha + 70 then
+					r <= "0110";
+					g <= "0110";
+					b <= "0110";
+				else
+					r <= "0000";
+					g <= "1111";
+					b <= "0000";
+				end if;
+			end if;
+		end if;
+	end process;
+end desenho;
+	
+	
+	

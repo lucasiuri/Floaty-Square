@@ -1,0 +1,22 @@
+library ieee;
+use ieee.all
+use ieee.numeric_std.all
+
+entity quadrado is
+port(linha, coluna: in std_logic_vector(9 downto 0);
+	  pos_h, pos_v: in std_logic_vector(4 downto 0);
+	  a: out std_logic);
+	  
+architecture desenho of quadrado is
+begin
+	aux 
+	process(linha, coluna)
+	begin
+	if (coluna = 10d"10" or coluna = 10d"20") and (linha > 10d"10" and linha < 10d"20") then a = '1';
+	elsif (linha = 10d"10" or linha = 10d"20") and (coluna > 10d"10" and linha < 10d"20") then a = '1';
+	else a = '0';
+	end process;
+end desenho;
+	
+	
+	
